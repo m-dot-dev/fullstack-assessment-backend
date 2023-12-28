@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 import { rateLimit } from "express-rate-limit";
 import sequelize from "./models/index.js";
+import productRouter from "./routes/products.routes.js";
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -20,15 +21,13 @@ app.use(express.json());
 
 app.use(limiter);
 
+app.use("/product", productRouter);
+
 app.get("/", (req, res) => {
-  Product(db.sequelize, db.Sequelize)
-    .findAll()
-    .then((products) => {
-      res.status(200).json(products);
-    });
+  res.send("Hello World!");
 });
 
-sequelize.sync().then(() => {
+sequelize.sync().then(async () => {
   console.log(`Database & tables created!`);
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

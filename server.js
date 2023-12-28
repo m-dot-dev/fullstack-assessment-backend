@@ -3,7 +3,8 @@ import express from "express";
 import { rateLimit } from "express-rate-limit";
 import sequelize from "./models/index.js";
 import productRouter from "./routes/products.routes.js";
-import initializeDatabase from "./services/initializeDatabase.js";
+import starredRouter from "./routes/starred.routes.js";
+import populateDatabase from "./services/populateDatabase.js";
 
 
 const limiter = rateLimit({
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use(limiter);
 
 app.use("/product", productRouter);
+app.use("/starred", starredRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -31,7 +33,7 @@ app.get("/", (req, res) => {
 
 sequelize.sync().then(async () => {
   console.log(`Database & tables created!`);
-  await initializeDatabase();
+  await populateDatabase();
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });

@@ -5,6 +5,7 @@ import sequelize from "./models/index.js";
 import productRouter from "./routes/products.routes.js";
 import starredRouter from "./routes/starred.routes.js";
 import populateDatabase from "./services/populateDatabase.js";
+import startPriceUpdateCron from "./services/triggerPriceUpdateCron.js";
 
 
 const limiter = rateLimit({
@@ -22,7 +23,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use(limiter);
+// app.use(limiter);
 
 app.use("/product", productRouter);
 app.use("/starred", starredRouter);
@@ -34,7 +35,10 @@ app.get("/", (req, res) => {
 sequelize.sync().then(async () => {
   console.log(`Database & tables created!`);
   await populateDatabase();
+  startPriceUpdateCron();
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });
 });
+
+

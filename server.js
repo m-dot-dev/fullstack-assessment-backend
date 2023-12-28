@@ -3,6 +3,8 @@ import express from "express";
 import { rateLimit } from "express-rate-limit";
 import sequelize from "./models/index.js";
 import productRouter from "./routes/products.routes.js";
+import initializeDatabase from "./services/initializeDatabase.js";
+
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -29,6 +31,7 @@ app.get("/", (req, res) => {
 
 sequelize.sync().then(async () => {
   console.log(`Database & tables created!`);
+  await initializeDatabase();
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });

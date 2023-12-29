@@ -9,22 +9,22 @@ const populateDatabase = async () => {
 
   // create the standard 3 products
   await Product.create({
-    name: "Product 1",
+    name: "Product Management Tool",
     price: Math.floor(Math.random() * 1000),
-    description: "This is a product description for Product 1.",
-    detail: "This is a product detail for Product 1.",
+    description: "Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum. Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum...",
+    detail: "Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum. Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum...",
   });
   await Product.create({
-    name: "Product 2",
+    name: "Inventory Management Product",
     price: Math.floor(Math.random() * 1000),
-    description: "This is a product description for Product 2.",
-    detail: "This is a product detail for Product 2.",
+    description: "Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum. Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum...",
+    detail: "Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum. Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum...",
   });
   await Product.create({
-    name: "Product 3",
+    name: "Hospital Management System",
     price: Math.floor(Math.random() * 1000),
-    description: "This is a product description for Product 3.",
-    detail: "This is a product detail for Product 3.",
+    description: "Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum. Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum...",
+    detail: "Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum. Lorem Ipsum has been the industry's standard the dummy text ever Lorem Ipsum...",
   });
 
   // await Starred.create({

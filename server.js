@@ -7,7 +7,6 @@ import starredRouter from "./routes/starred.routes.js";
 import populateDatabase from "./services/populateDatabase.js";
 import startPriceUpdateCron from "./services/triggerPriceUpdateCron.js";
 
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
@@ -40,5 +39,3 @@ sequelize.sync().then(async () => {
     console.log(`Server is running on port ${port}`);
   });
 });
-
-

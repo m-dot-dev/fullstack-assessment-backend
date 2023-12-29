@@ -1,13 +1,22 @@
-
-import { Sequelize } from 'sequelize';
+import * as dotenv from "dotenv";
+dotenv.config();
+import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize({
-  database: 'assessmentdb',
-  username: 'root',
-  password: '123456',
-  dialect: 'mysql', // or the dialect for your database
-  host: 'localhost',
-  
+  dialect: "mysql", // or the dialect for your database
+  database: process.env.DATABASE,
+  username: process.env.DB_USERNAME,
+  host: process.env.DB_HOST,
+  password: process.env.DB_PASSWORD,
+
+  dialectOptions: {
+    ssl: {
+      rejectUnauthorized: true,
+    },
+  },
+  define: {
+    timestamps: false,
+  },
   logging: false, // disable logging SQL queries to the console
 });
 

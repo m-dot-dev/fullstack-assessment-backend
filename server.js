@@ -15,14 +15,13 @@ const limiter = rateLimit({
   // store: ... , // Use an external store for consistency across multiple server instances.
 });
 
-// Apply the rate limiting middleware to all requests.
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-// app.use(limiter);
+app.use(limiter);
 
 app.use("/product", productRouter);
 app.use("/starred", starredRouter);
